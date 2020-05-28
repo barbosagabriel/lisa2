@@ -1,12 +1,13 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import * as React from 'react';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
+import * as React from "react";
 
-import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+import TabBarIcon from "../components/TabBarIcon";
+import FoodsScreen from "../screens/FoodsScreen";
+import TacoTableScreen from "../screens/TacoTableScreen";
 
-const BottomTab = createBottomTabNavigator();
-const INITIAL_ROUTE_NAME = 'Home';
+const Tab = createBottomTabNavigator();
+const INITIAL_ROUTE_NAME = "Foods";
 
 export default function BottomTabNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
@@ -15,34 +16,41 @@ export default function BottomTabNavigator({ navigation, route }) {
   navigation.setOptions({ headerTitle: getHeaderTitle(route) });
 
   return (
-    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
-      <BottomTab.Screen
-        name="Home"
-        component={HomeScreen}
+    <Tab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
+      <Tab.Screen
+        name="Foods"
+        component={FoodsScreen}
         options={{
-          title: 'Get Started',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+          title: "Lista de Substituição",
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name="food-variant" />
+          ),
         }}
       />
-      <BottomTab.Screen
-        name="Links"
-        component={LinksScreen}
+      <Tab.Screen
+        name="TacoTable"
+        component={TacoTableScreen}
         options={{
-          title: 'Resources',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
+          title: "Tabela TACO",
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name="nutrition" />
+          ),
         }}
       />
-    </BottomTab.Navigator>
+    </Tab.Navigator>
   );
 }
 
 function getHeaderTitle(route) {
-  const routeName = route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
+  const routeName =
+    route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
 
   switch (routeName) {
-    case 'Home':
-      return 'How to get started';
-    case 'Links':
-      return 'Links to learn more';
+    case "Foods":
+      return "Lista de Substituição";
+    case "AllFoods":
+      return "Lista de Substituição 2";
+    case "TacoTable":
+      return "Tabela TACO";
   }
 }

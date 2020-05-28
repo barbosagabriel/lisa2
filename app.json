@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "lisa",
+    "name": "LISA",
     "slug": "lisa",
     "platforms": [
       "ios",
@@ -27,6 +27,7 @@
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
-    }
+    },
+    "description": ""
   }
 }
